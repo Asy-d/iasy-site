@@ -16,11 +16,19 @@ function renderNav() {
   }).join("");
 
   mount.innerHTML = `
-    <nav class="site-nav">
-      <a class="nav-brand" href="/art/">Asy Dhaif</a>
+    <nav class="site-nav" id="site-nav-inner">
+      <a class="nav-brand" href="/art/">
+        <span class="nav-brand-mark"></span>
+        Asy Dhaif
+      </a>
       <div class="nav-links">${linksHtml}</div>
     </nav>
   `;
+
+  const nav = document.getElementById("site-nav-inner");
+  const onScroll = () => nav.classList.toggle("is-scrolled", window.scrollY > 8);
+  window.addEventListener("scroll", onScroll);
+  onScroll();
 }
 
 document.addEventListener("DOMContentLoaded", renderNav);
