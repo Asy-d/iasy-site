@@ -113,3 +113,44 @@ main {
   font: var(--text-body-s);
   color: var(--text-tertiary);
 }
+
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 420px) 1fr;
+  gap: var(--space-16);
+  max-width: 1120px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.about-portrait {
+  border-radius: var(--radius-l);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+}
+
+.about-portrait img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.about-bio {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.about-bio p {
+  font: var(--text-body-l);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+@media (max-width: 860px) {
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+}
