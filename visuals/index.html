@@ -10,63 +10,54 @@
 <body>
   <div id="site-nav"></div>
 
-  <main>
-    <div class="page-header">
-      <h1 class="page-title">Visuals</h1>
-    </div>
+  <main class="split-slider-main">
+    <section class="split-slider" id="split-slider">
+      <div class="split-slider-media">
+        <div class="split-slide-image is-active" data-title="Pebblebed" data-meta="AI Conference · 2023 · Projection Mapping and Animation" style="background-image: url('/assets/images/visuals/pebblebed-ai-conference-2023.png');"></div>
+        <div class="split-slide-image" data-title="PoloCorp" data-meta="Public Works · 2025 · Projection Mapping and Animation" style="background-image: url('/assets/images/visuals/polocorp-public-works-2025.jpg');"></div>
+        <div class="split-slide-image" data-title="PlayAlchemist" data-meta="Burning Man · 2022 · Projection Mapping and Animation" style="background-image: url('/assets/images/visuals/playalchemist-burning-man-2022.jpg');"></div>
+        <div class="split-slide-image" data-title="251 Club" data-meta="San Francisco · 2019 · Live Visuals" style="background-image: url('/assets/images/visuals/251-club-san-francisco-2019.jpg');"></div>
+        <div class="split-slide-image" data-title="Chillits Festival" data-meta="Laytonville, California · 2022 · Live VJ Set + Projection Mapping" style="background-image: url('/assets/images/visuals/chillits-festival-2022.jpg');"></div>
+        <div class="split-slide-image" data-title="SpaceX" data-meta="IPO Event · 2026 · Animations" style="background-image: url('/assets/images/visuals/spacex-ipo-event-2026.jpg');"></div>
+        <div class="split-slide-image" data-title="Gray Area" data-meta="San Francisco · 2026 · Animation &amp; Projection Mapping Design" style="background-image: url('/assets/images/visuals/gray-area-san-francisco-2026.jpg');"></div>
+        <div class="split-slider-scrim"></div>
 
-    <div class="visuals-grid">
-      <figure class="visual-card">
-        <div class="visual-card-media">
-          <img src="/assets/images/visuals/pebblebed-ai-conference-2023.png" alt="Pebblebed, AI Conference. 2023 (Projection Mapping and Animation)">
+        <div class="split-slider-dots">
+          <button class="split-dot is-active" data-index="0" style="background-image: url('/assets/images/visuals/pebblebed-ai-conference-2023.png');" aria-label="Pebblebed"></button>
+          <button class="split-dot" data-index="1" style="background-image: url('/assets/images/visuals/polocorp-public-works-2025.jpg');" aria-label="PoloCorp"></button>
+          <button class="split-dot" data-index="2" style="background-image: url('/assets/images/visuals/playalchemist-burning-man-2022.jpg');" aria-label="PlayAlchemist"></button>
+          <button class="split-dot" data-index="3" style="background-image: url('/assets/images/visuals/251-club-san-francisco-2019.jpg');" aria-label="251 Club"></button>
+          <button class="split-dot" data-index="4" style="background-image: url('/assets/images/visuals/chillits-festival-2022.jpg');" aria-label="Chillits Festival"></button>
+          <button class="split-dot" data-index="5" style="background-image: url('/assets/images/visuals/spacex-ipo-event-2026.jpg');" aria-label="SpaceX"></button>
+          <button class="split-dot" data-index="6" style="background-image: url('/assets/images/visuals/gray-area-san-francisco-2026.jpg');" aria-label="Gray Area"></button>
         </div>
-        <figcaption class="visual-caption">Pebblebed, AI Conference. 2023 (Projection Mapping and Animation)</figcaption>
-      </figure>
+      </div>
 
-      <figure class="visual-card">
-        <div class="visual-card-media">
-          <img src="/assets/images/visuals/polocorp-public-works-2025.jpg" alt="PoloCorp, Public Works. 2025 (Projection Mapping and Animation)">
-        </div>
-        <figcaption class="visual-caption">PoloCorp, Public Works. 2025 (Projection Mapping and Animation)</figcaption>
-      </figure>
+      <div class="split-slider-panel">
+        <p class="split-slider-eyebrow">Visuals</p>
 
-      <figure class="visual-card">
-        <div class="visual-card-media">
-          <img src="/assets/images/visuals/playalchemist-burning-man-2022.jpg" alt="PlayAlchemist, Burning Man. 2022 (Projection Mapping and Animation)">
+        <div class="split-slider-index">
+          <span class="current">01</span>
+          <span class="index-slash"></span>
+          <span class="total">07</span>
         </div>
-        <figcaption class="visual-caption">PlayAlchemist, Burning Man. 2022 (Projection Mapping and Animation)</figcaption>
-      </figure>
 
-      <figure class="visual-card">
-        <div class="visual-card-media">
-          <img src="/assets/images/visuals/251-club-san-francisco-2019.jpg" alt="251 Club, San Francisco. 2019 (Live Visuals)">
-        </div>
-        <figcaption class="visual-caption">251 Club, San Francisco. 2019 (Live Visuals)</figcaption>
-      </figure>
+        <h1 class="split-slider-title">Pebblebed</h1>
+        <p class="split-slider-meta">AI Conference · 2023 · Projection Mapping and Animation</p>
 
-      <figure class="visual-card">
-        <div class="visual-card-media">
-          <img src="/assets/images/visuals/chillits-festival-2022.jpg" alt="Chillits Festival, Laytonville, California. 2022 (Live VJ set + Projection Mapping)">
+        <div class="split-slider-nav">
+          <button class="split-nav-btn" data-dir="prev" aria-label="Previous">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 13V3M3 8l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="split-nav-btn" data-dir="next" aria-label="Next">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
         </div>
-        <figcaption class="visual-caption">Chillits Festival, Laytonville, California. 2022 (Live VJ set + Projection Mapping)</figcaption>
-      </figure>
-
-      <figure class="visual-card">
-        <div class="visual-card-media">
-          <img src="/assets/images/visuals/spacex-ipo-event-2026.jpg" alt="SpaceX, IPO event. 2026 (animations)">
-        </div>
-        <figcaption class="visual-caption">SpaceX, IPO event. 2026 (animations)</figcaption>
-      </figure>
-
-      <figure class="visual-card">
-        <div class="visual-card-media">
-          <img src="/assets/images/visuals/gray-area-san-francisco-2026.jpg" alt="Gray Area, San Francisco, 2026. Animation & Projection Mapping Design">
-        </div>
-        <figcaption class="visual-caption">Gray Area, San Francisco, 2026. Animation & Projection Mapping Design</figcaption>
-      </figure>
-    </div>
+      </div>
+    </section>
   </main>
 
   <script src="/assets/js/nav.js"></script>
+  <script src="/assets/js/split-slider.js"></script>
 </body>
 </html>

@@ -326,3 +326,213 @@ main.hero-main {
   22% { opacity: 1; }
   28% { opacity: 0; }
 }
+
+main.split-slider-main {
+  padding: 0;
+}
+
+.split-slider {
+  position: relative;
+  display: flex;
+  min-height: 88vh;
+  background: var(--bg-page);
+}
+
+.split-slider-media {
+  position: relative;
+  flex: 1 1 60%;
+  overflow: hidden;
+}
+
+.split-slide-image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 1100ms var(--ease-in-out), transform 1400ms var(--ease-out);
+}
+
+.split-slide-image.is-active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 1;
+}
+
+.split-slider-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    transparent 70%,
+    oklch(0.15 0.006 40 / 0.5) 92%,
+    var(--bg-page) 100%
+  ),
+  linear-gradient(
+    to bottom,
+    oklch(0.15 0.006 40 / 0.35) 0%,
+    transparent 22%,
+    transparent 78%,
+    oklch(0.15 0.006 40 / 0.55) 100%
+  );
+}
+
+.split-slider-dots {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(50%, -50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.split-dot {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--border-subtle);
+  background-color: var(--bg-surface);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.55;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out);
+  box-shadow: var(--shadow-s);
+}
+
+.split-dot:hover {
+  opacity: 0.85;
+}
+
+.split-dot.is-active {
+  opacity: 1;
+  border-color: var(--accent);
+  transform: scale(1.12);
+}
+
+.split-slider-panel {
+  position: relative;
+  flex: 1 1 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-16) var(--space-24);
+  background: var(--bg-page);
+}
+
+.split-slider-eyebrow {
+  font: var(--text-mono-caps);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-tertiary);
+  margin: 0 0 var(--space-10);
+}
+
+.split-slider-index {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font: var(--text-mono);
+  margin: 0 0 var(--space-6);
+}
+
+.split-slider-index .current {
+  color: var(--text-primary);
+  font-size: 1.05rem;
+}
+
+.split-slider-index .total {
+  color: var(--text-tertiary);
+}
+
+.index-slash {
+  width: 26px;
+  height: 1px;
+  background: var(--border-strong);
+  transform: rotate(-58deg);
+  margin: 2px 0;
+}
+
+.split-slider-title {
+  font: var(--text-display-l);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-4);
+  letter-spacing: var(--tracking-tight);
+  max-width: 12ch;
+}
+
+.split-slider-meta {
+  font: var(--text-body-l);
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: 34ch;
+}
+
+.split-slider-nav {
+  position: absolute;
+  right: var(--space-16);
+  bottom: var(--space-12);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.split-nav-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--border-default);
+  background: transparent;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    background var(--duration-fast) var(--ease-out);
+}
+
+.split-nav-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--accent);
+  background: oklch(0.62 0.18 255 / 0.12);
+}
+
+@media (max-width: 900px) {
+  .split-slider {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .split-slider-media {
+    flex: none;
+    height: 46vh;
+  }
+
+  .split-slider-dots {
+    display: none;
+  }
+
+  .split-slider-panel {
+    padding: var(--space-10) var(--space-6) var(--space-16);
+  }
+
+  .split-slider-title {
+    font: var(--text-display-m);
+    max-width: none;
+  }
+
+  .split-slider-nav {
+    right: var(--space-6);
+    bottom: var(--space-6);
+  }
+}
