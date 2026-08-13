@@ -47,6 +47,14 @@ body {
   background-image: url('/assets/images/art/corners-of-the-unconscious.png');
   background-size: cover;
   background-position: center;
+  box-shadow: 0 0 10px 1px oklch(0.62 0.18 255 / 0.35);
+  transition: box-shadow var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+}
+
+.nav-brand:hover .nav-brand-mark {
+  box-shadow: 0 0 18px 4px oklch(0.62 0.18 255 / 0.65);
+  transform: scale(1.08);
 }
 
 .nav-links {

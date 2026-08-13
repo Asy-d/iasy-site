@@ -17,9 +17,8 @@ function renderNav() {
 
   mount.innerHTML = `
     <nav class="site-nav" id="site-nav-inner">
-      <a class="nav-brand" href="/art/">
+      <a class="nav-brand" href="/art/" aria-label="Asy Dhaif — Home">
         <span class="nav-brand-mark"></span>
-        Asy Dhaif
       </a>
       <div class="nav-links">${linksHtml}</div>
     </nav>
