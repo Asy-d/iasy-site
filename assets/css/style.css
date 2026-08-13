@@ -41,8 +41,8 @@ body {
 }
 
 .nav-brand-mark {
-  width: 26px;
-  height: 26px;
+  width: 38px;
+  height: 38px;
   border-radius: var(--radius-s);
   background-image: url('/assets/images/art/corners-of-the-unconscious.png');
   background-size: cover;
