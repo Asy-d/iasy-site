@@ -562,13 +562,16 @@ main.split-slider-main {
   justify-content: center;
   gap: var(--space-12);
   padding: var(--space-24) 24px;
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 0%, oklch(0.22 0.05 300 / 0.9) 0%, transparent 70%),
+    linear-gradient(180deg, oklch(0.14 0.02 300) 0%, var(--bg-page) 55%);
 }
 
 .contact-glow {
   position: absolute;
   border-radius: 50%;
   filter: blur(90px);
-  opacity: 0.32;
+  opacity: 0.4;
   pointer-events: none;
   z-index: 0;
   animation: contact-drift 22s ease-in-out infinite;
@@ -579,7 +582,7 @@ main.split-slider-main {
   height: 460px;
   top: -120px;
   left: -100px;
-  background: var(--grad-magenta);
+  background: var(--grad-purple);
   animation-delay: 0s;
 }
 
@@ -588,18 +591,18 @@ main.split-slider-main {
   height: 520px;
   bottom: -160px;
   right: -140px;
-  background: var(--grad-blue);
+  background: var(--grad-magenta);
   animation-delay: -7s;
 }
 
 .contact-glow-3 {
-  width: 380px;
-  height: 380px;
-  top: 40%;
+  width: 420px;
+  height: 420px;
+  top: 38%;
   left: 50%;
-  background: var(--grad-orange);
+  background: oklch(0.4 0.22 300);
   animation-delay: -14s;
-  opacity: 0.2;
+  opacity: 0.3;
 }
 
 @keyframes contact-drift {
@@ -733,8 +736,8 @@ main.split-slider-main {
 .form-field input:focus,
 .form-field textarea:focus {
   outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px oklch(0.62 0.18 255 / 0.18);
+  border-color: var(--grad-purple);
+  box-shadow: 0 0 0 3px oklch(0.48 0.2 300 / 0.22);
 }
 
 .contact-submit {
@@ -744,18 +747,23 @@ main.split-slider-main {
   gap: var(--space-2);
   padding: 13px 26px;
   border-radius: var(--radius-m);
-  border: none;
-  background: var(--accent);
-  color: var(--text-on-accent);
+  border: 1px solid oklch(0.48 0.2 300 / 0.55);
+  background: var(--bg-inset);
+  color: var(--text-primary);
   font: var(--text-body);
   font-weight: 600;
   cursor: pointer;
+  box-shadow: 0 0 18px 2px oklch(0.48 0.2 300 / 0.4);
   transition: background var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out),
     transform var(--duration-fast) var(--ease-out);
 }
 
 .contact-submit:hover:not(:disabled) {
-  background: var(--accent-hover);
+  background: oklch(0.22 0.03 300);
+  border-color: oklch(0.6 0.22 300 / 0.85);
+  box-shadow: 0 0 30px 6px oklch(0.48 0.2 300 / 0.65);
 }
 
 .contact-submit:active:not(:disabled) {
