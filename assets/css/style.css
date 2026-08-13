@@ -25,9 +25,9 @@ body {
 }
 
 .site-nav.is-scrolled {
-  background: oklch(0.15 0.006 40 / 0.75);
+  background: transparent;
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid transparent;
 }
 
 .nav-brand {

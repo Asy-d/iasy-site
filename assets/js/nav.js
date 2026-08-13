@@ -15,7 +15,7 @@ function renderNav() {
     return `<a class="nav-link${isActive ? " is-active" : ""}" href="${href}">${label}</a>`;
   }).join("");
 
-  mount.innerHTML = `
+  mount.outerHTML = `
     <nav class="site-nav" id="site-nav-inner">
       <a class="nav-brand" href="/art/" aria-label="Asy Dhaif — Home">
         <span class="nav-brand-mark"></span>
