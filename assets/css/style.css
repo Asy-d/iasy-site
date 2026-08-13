@@ -124,6 +124,7 @@ main {
 }
 
 .about-portrait {
+  position: relative;
   border-radius: var(--radius-xl);
   overflow: hidden;
   border: 1px solid var(--border-default);
@@ -136,6 +137,14 @@ main {
 .about-portrait:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-l), var(--shadow-glow-accent);
+}
+
+.about-portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 80px 20px oklch(0 0 0 / 0.65);
+  pointer-events: none;
 }
 
 .about-portrait img {
