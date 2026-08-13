@@ -124,10 +124,18 @@ main {
 }
 
 .about-portrait {
-  border-radius: var(--radius-l);
+  border-radius: var(--radius-xl);
   overflow: hidden;
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-default);
   background: var(--bg-surface);
+  box-shadow: var(--shadow-l);
+  transition: transform var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
+}
+
+.about-portrait:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-l), var(--shadow-glow-accent);
 }
 
 .about-portrait img {
