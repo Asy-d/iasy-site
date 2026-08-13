@@ -298,14 +298,14 @@ main.hero-main {
   background-size: cover;
   background-position: center;
   opacity: 0;
-  animation: hero-fade 32s infinite ease-in-out,
-    hero-zoom 32s infinite ease-in-out;
+  animation: hero-fade 18s infinite ease-in-out,
+    hero-zoom 18s infinite ease-in-out;
 }
 
 .hero-slide:nth-child(1) { animation-delay: 0s, 0s; }
-.hero-slide:nth-child(2) { animation-delay: 8s, 8s; }
-.hero-slide:nth-child(3) { animation-delay: 16s, 16s; }
-.hero-slide:nth-child(4) { animation-delay: 24s, 24s; }
+.hero-slide:nth-child(2) { animation-delay: 4.5s, 4.5s; }
+.hero-slide:nth-child(3) { animation-delay: 9s, 9s; }
+.hero-slide:nth-child(4) { animation-delay: 13.5s, 13.5s; }
 
 @keyframes hero-fade {
   0%, 100% { opacity: 0; }
@@ -361,7 +361,7 @@ main.hero-main {
 
 @media (prefers-reduced-motion: reduce) {
   .hero-slide {
-    animation: hero-fade-reduced 32s infinite ease-in-out;
+    animation: hero-fade-reduced 18s infinite ease-in-out;
   }
 }
 
