@@ -44,7 +44,9 @@ body {
   width: 26px;
   height: 26px;
   border-radius: var(--radius-s);
-  background: var(--gradient-brand);
+  background-image: url('/assets/images/art/corners-of-the-unconscious.png');
+  background-size: cover;
+  background-position: center;
 }
 
 .nav-links {
