@@ -290,10 +290,10 @@ main.hero-main {
   inset: 0;
   background: linear-gradient(
     to bottom,
-    oklch(0.15 0.006 40 / 0.75) 0%,
-    oklch(0.15 0.006 40 / 0.45) 30%,
-    oklch(0.15 0.006 40 / 0.1) 54%,
-    oklch(0.15 0.006 40 / 0.1) 64%,
+    oklch(0.15 0.006 40 / 0.85) 0%,
+    oklch(0.15 0.006 40 / 0.6) 38%,
+    oklch(0.15 0.006 40 / 0.1) 66%,
+    oklch(0.15 0.006 40 / 0.1) 74%,
     oklch(0.15 0.006 40 / 0.75) 100%
   );
 }
@@ -301,7 +301,7 @@ main.hero-main {
 .hero-content {
   position: relative;
   z-index: 1;
-  padding: var(--space-16) 48px var(--space-32);
+  padding: var(--space-16) 48px 0;
   max-width: 900px;
 }
 
