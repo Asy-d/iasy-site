@@ -282,8 +282,8 @@ main {
 
 @keyframes label-type-loop {
   0% { width: 0; animation-timing-function: steps(var(--chars), end); }
-  40% { width: calc(var(--chars) * 1ch + 0.5em); animation-timing-function: linear; }
-  70% { width: calc(var(--chars) * 1ch + 0.5em); animation-timing-function: steps(var(--chars), end); }
+  40% { width: calc(var(--chars) * 1ch + 1em); animation-timing-function: linear; }
+  70% { width: calc(var(--chars) * 1ch + 1em); animation-timing-function: steps(var(--chars), end); }
   100% { width: 0; }
 }
 
@@ -294,7 +294,7 @@ main {
 
 @media (prefers-reduced-motion: reduce) {
   .featured-at-label {
-    width: calc(var(--chars) * 1ch + 0.5em);
+    width: calc(var(--chars) * 1ch + 1em);
     border-right: none;
     animation: none;
   }
