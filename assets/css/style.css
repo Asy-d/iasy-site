@@ -170,7 +170,7 @@ main {
 .about-portrait {
   position: relative;
   width: 100%;
-  max-width: 380px;
+  max-width: 280px;
   aspect-ratio: 1;
   margin: 0 auto;
   border-radius: 50%;
