@@ -266,55 +266,34 @@ main {
 }
 
 .featured-at-label {
-  position: relative;
   display: inline-block;
   font: var(--text-mono-caps);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
   color: var(--text-primary);
   margin: 0 0 var(--space-3);
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  border-right: 0.55em solid var(--white);
+  animation: label-type 1.2s steps(var(--chars), end) 0.3s forwards,
+    label-caret 0.8s step-end infinite;
 }
 
-.featured-at-label::before,
-.featured-at-label::after {
-  content: attr(data-text);
-  position: absolute;
-  inset: 0;
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-wide);
-  opacity: 0;
+@keyframes label-type {
+  from { width: 0; }
+  to { width: calc(var(--chars) * 1ch + 0.4em); }
 }
 
-.featured-at-label::before {
-  color: var(--white);
-  animation: label-glitch-white 6s infinite;
-}
-
-.featured-at-label::after {
-  color: var(--black);
-  animation: label-glitch-black 6s infinite;
-}
-
-@keyframes label-glitch-white {
-  0%, 91%, 100% { clip-path: inset(0 0 100% 0); transform: translate(0, 0); opacity: 0; }
-  92% { clip-path: inset(10% 0 65% 0); transform: translate(-2px, -1px); opacity: 1; }
-  93% { clip-path: inset(55% 0 10% 0); transform: translate(2px, 1px); opacity: 1; }
-  94% { clip-path: inset(25% 0 50% 0); transform: translate(-3px, 0); opacity: 1; }
-  95% { clip-path: inset(70% 0 5% 0); transform: translate(1px, 1px); opacity: 1; }
-  96%, 100% { clip-path: inset(0 0 100% 0); opacity: 0; }
-}
-
-@keyframes label-glitch-black {
-  0%, 89%, 100% { clip-path: inset(0 0 100% 0); transform: translate(0, 0); opacity: 0; }
-  90% { clip-path: inset(20% 0 55% 0); transform: translate(2px, 1px); opacity: 1; }
-  91% { clip-path: inset(60% 0 15% 0); transform: translate(-2px, -1px); opacity: 1; }
-  92% { clip-path: inset(5% 0 80% 0); transform: translate(3px, 0); opacity: 1; }
-  93%, 100% { clip-path: inset(0 0 100% 0); opacity: 0; }
+@keyframes label-caret {
+  0%, 100% { border-color: var(--white); }
+  50% { border-color: transparent; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .featured-at-label::before,
-  .featured-at-label::after {
+  .featured-at-label {
+    width: calc(var(--chars) * 1ch + 0.4em);
+    border-right: none;
     animation: none;
   }
 }
