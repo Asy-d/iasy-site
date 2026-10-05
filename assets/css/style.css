@@ -882,34 +882,40 @@ main.split-slider-main {
 
 /* Movie nights (hidden page) */
 .movie-body {
+  background: var(--bg-page);
+}
+
+.movie-body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
   background:
-    radial-gradient(ellipse 60% 40% at 50% 0%, oklch(0.22 0.07 15 / 0.55), transparent 70%),
-    var(--bg-page);
+    radial-gradient(ellipse 85% 75% at 50% 50%, transparent 35%, oklch(0.1 0.006 40 / 0.55) 75%, oklch(0.07 0.006 40 / 0.92) 100%),
+    linear-gradient(to right, oklch(0.07 0.006 40 / 0.7), transparent 22%, transparent 78%, oklch(0.07 0.006 40 / 0.7));
 }
 
 main.movie-main {
-  padding: var(--space-8) 24px var(--space-32);
+  padding: 0;
 }
 
 .movie-section {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-10);
-  max-width: 560px;
-  margin: 0 auto;
-  padding: var(--space-16) 0 var(--space-24);
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: var(--space-24) 24px 14vh;
+  overflow: hidden;
 }
 
 .movie-image {
-  position: relative;
-  width: 100%;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   margin: 0;
-  aspect-ratio: 928 / 1152;
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  border: 1px solid oklch(0.5 0.12 20 / 0.35);
-  box-shadow: var(--shadow-l), 0 0 60px 6px oklch(0.4 0.14 20 / 0.28);
 }
 
 .movie-image img {
@@ -917,22 +923,35 @@ main.movie-main {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 35%;
 }
 
-.movie-image::after {
+.movie-section::before {
   content: "";
   position: absolute;
   inset: 0;
-  box-shadow: inset 0 0 70px 14px oklch(0 0 0 / 0.55);
+  z-index: 1;
   pointer-events: none;
+  background:
+    linear-gradient(to bottom,
+      var(--bg-page) 0%,
+      oklch(0.15 0.006 40 / 0.6) 12%,
+      transparent 30%,
+      transparent 42%,
+      oklch(0.15 0.006 40 / 0.72) 68%,
+      oklch(0.15 0.006 40 / 0.94) 88%,
+      var(--bg-page) 100%);
 }
 
 .movie-text {
+  position: relative;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-4);
   width: 100%;
+  max-width: 600px;
 }
 
 .movie-title {
@@ -940,12 +959,14 @@ main.movie-main {
   letter-spacing: var(--tracking-tight);
   color: var(--text-primary);
   margin: 0;
+  text-shadow: 0 2px 24px oklch(0 0 0 / 0.7);
 }
 
 .movie-body-text {
   font: var(--text-body-l);
   color: var(--text-secondary);
   margin: 0;
+  text-shadow: 0 1px 14px oklch(0 0 0 / 0.8);
 }
 
 .movie-signup {
@@ -955,7 +976,7 @@ main.movie-main {
   padding: 13px 30px;
   border-radius: var(--radius-pill);
   border: 1px solid oklch(0.55 0.17 20 / 0.6);
-  background: var(--bg-inset);
+  background: oklch(0.12 0.01 20 / 0.8);
   color: var(--text-primary);
   font: var(--text-body);
   font-weight: 600;
@@ -977,11 +998,9 @@ main.movie-main {
 
 .js-reveal .movie-image.reveal {
   opacity: 0;
-  transform: translateY(56px) scale(0.95);
-  filter: blur(10px);
-  transition: opacity 1.1s var(--ease-out),
-    transform 1.2s var(--ease-out),
-    filter 1.1s var(--ease-out);
+  transform: scale(1.08);
+  transition: opacity 1.6s var(--ease-out),
+    transform 2.4s var(--ease-out);
 }
 
 .js-reveal .movie-text.reveal {
@@ -992,11 +1011,10 @@ main.movie-main {
 }
 
 .js-reveal .reveal-delay {
-  transition-delay: 0.45s;
+  transition-delay: 0.6s;
 }
 
 .js-reveal .reveal.is-visible {
   opacity: 1;
   transform: none;
-  filter: none;
 }
