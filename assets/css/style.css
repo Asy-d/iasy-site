@@ -955,32 +955,63 @@ main.movie-main {
 }
 
 .movie-title {
-  font: var(--text-display-l);
-  letter-spacing: var(--tracking-tight);
+  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  font-size: clamp(1.9rem, 3vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
   color: var(--text-primary);
   margin: 0;
   text-shadow: 0 2px 24px oklch(0 0 0 / 0.7);
 }
 
 .movie-body-text {
-  font: var(--text-body-l);
+  font-family: "EB Garamond", Georgia, "Times New Roman", serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.6;
   color: var(--text-secondary);
   margin: 0;
   text-shadow: 0 1px 14px oklch(0 0 0 / 0.8);
+}
+
+.movie-section--intro {
+  align-items: center;
+  padding-bottom: var(--space-24);
+}
+
+.movie-section--intro::before {
+  background:
+    radial-gradient(ellipse 55% 45% at 50% 50%, oklch(0.1 0.006 40 / 0.82), transparent 100%),
+    linear-gradient(to bottom,
+      var(--bg-page) 0%,
+      oklch(0.15 0.006 40 / 0.5) 14%,
+      transparent 32%,
+      transparent 66%,
+      oklch(0.15 0.006 40 / 0.6) 84%,
+      var(--bg-page) 100%);
+}
+
+.movie-section--intro .movie-text {
+  align-items: center;
+  text-align: center;
+  max-width: 620px;
 }
 
 .movie-signup {
   display: inline-flex;
   align-items: center;
   margin-top: var(--space-2);
-  padding: 13px 30px;
+  padding: 11px 28px;
   border-radius: var(--radius-pill);
   border: 1px solid oklch(0.55 0.17 20 / 0.6);
   background: oklch(0.12 0.01 20 / 0.8);
   color: var(--text-primary);
-  font: var(--text-body);
-  font-weight: 600;
-  letter-spacing: var(--tracking-wide);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   text-decoration: none;
   box-shadow: 0 0 18px 2px oklch(0.5 0.18 20 / 0.4);
   transition: background var(--duration-fast) var(--ease-out),
