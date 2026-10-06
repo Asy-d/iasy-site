@@ -30,7 +30,7 @@
       <div class="movie-text reveal reveal-delay">
         <h2 class="movie-title">The Afterthought</h2>
         <p class="movie-body-text">A night for films that make us curious, uncomfortable, or see something differently. Expect documentaries, true stories, and conversations that continue long after the movie ends.</p>
-        <a class="movie-signup" href="mailto:asy9dh@gmail.com?subject=Movie%20Night%20Sign-up%3A%20The%20Afterthought">Sign up</a>
+        <a class="movie-signup" href="#signup" data-series="The Afterthought">Sign up</a>
       </div>
     </section>
 
@@ -41,7 +41,7 @@
       <div class="movie-text reveal reveal-delay">
         <h2 class="movie-title">Cinema as Art</h2>
         <p class="movie-body-text">Surreal, beautiful, atmospheric cinema that pulls you into another visual world. Movies worth pausing just to look at. A series devoted to exceptional cinematography, inventive filmmaking, and directors with a strong visual point of view.</p>
-        <a class="movie-signup" href="mailto:asy9dh@gmail.com?subject=Movie%20Night%20Sign-up%3A%20Cinema%20as%20Art">Sign up</a>
+        <a class="movie-signup" href="#signup" data-series="Cinema as Art">Sign up</a>
       </div>
     </section>
 
@@ -52,11 +52,46 @@
       <div class="movie-text reveal reveal-delay">
         <h2 class="movie-title">Must-See Cinema</h2>
         <p class="movie-body-text">Movies everyone seems to be talking about—or should be. Compelling dramas, cultural phenomena, breakout hits, and stories that inspire opinions.</p>
-        <a class="movie-signup" href="mailto:asy9dh@gmail.com?subject=Movie%20Night%20Sign-up%3A%20Must-See%20Cinema">Sign up</a>
+        <a class="movie-signup" href="#signup" data-series="Must-See Cinema">Sign up</a>
+      </div>
+    </section>
+
+    <section class="movie-section movie-section--signup" id="signup">
+      <figure class="movie-image reveal">
+        <img src="/assets/images/movie/movie-night-intro.webp" alt="" loading="lazy">
+      </figure>
+      <div class="movie-text reveal reveal-delay">
+        <h2 class="movie-title">Join the Guest List</h2>
+        <p class="movie-body-text">Tell me who you are and which nights speak to you, and I’ll include you in future invites. Your details are only used for movie night invitations.</p>
+
+        <form class="movie-form" id="movie-form" data-endpoint="" novalidate>
+          <label class="movie-field">
+            <span class="movie-label">Your name</span>
+            <input type="text" name="name" autocomplete="name" maxlength="120" required>
+          </label>
+
+          <fieldset class="movie-field movie-choices">
+            <legend class="movie-label">Which movie nights speak to you?</legend>
+            <label class="movie-check"><input type="checkbox" name="types" value="The Afterthought"><span>The Afterthought</span></label>
+            <label class="movie-check"><input type="checkbox" name="types" value="Cinema as Art"><span>Cinema as Art</span></label>
+            <label class="movie-check"><input type="checkbox" name="types" value="Must-See Cinema"><span>Must-See Cinema</span></label>
+          </fieldset>
+
+          <label class="movie-field">
+            <span class="movie-label">Phone number</span>
+            <input type="tel" name="phone" autocomplete="tel" inputmode="tel" maxlength="30" required>
+          </label>
+
+          <input class="movie-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <button class="movie-signup movie-submit" type="submit">Reserve my seat</button>
+          <p class="movie-status" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </section>
   </main>
 
   <script src="/assets/js/movie.js"></script>
+  <script src="/assets/js/movie-signup.js"></script>
 </body>
 </html>

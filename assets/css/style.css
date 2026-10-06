@@ -1074,3 +1074,165 @@ main.movie-main {
   opacity: 1;
   transform: none;
 }
+
+/* Movie Nights sign-up form */
+.movie-section--signup .movie-text {
+  max-width: 560px;
+}
+
+.movie-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  width: 100%;
+  margin-top: var(--space-2);
+}
+
+.movie-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.movie-label {
+  padding: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: oklch(0.76 0.09 85);
+}
+
+.movie-field input[type="text"],
+.movie-field input[type="tel"] {
+  width: 100%;
+  padding: 8px 2px 10px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid oklch(0.6 0.08 80 / 0.6);
+  border-radius: 0;
+  color: var(--text-primary);
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 1.2rem;
+  outline: none;
+  transition: border-color var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
+}
+
+.movie-field input[type="text"]:focus,
+.movie-field input[type="tel"]:focus {
+  border-bottom-color: oklch(0.76 0.09 85);
+  box-shadow: 0 6px 14px -8px oklch(0.76 0.09 85 / 0.7);
+}
+
+.movie-choices {
+  gap: var(--space-3);
+}
+
+.movie-check {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  cursor: pointer;
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+}
+
+.movie-check input {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  border: 1px solid oklch(0.6 0.08 80 / 0.8);
+  border-radius: 2px;
+  background: oklch(0.12 0.02 20 / 0.7);
+  cursor: pointer;
+  transition: border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.movie-check input::after {
+  content: "\2766";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  color: oklch(0.82 0.1 85);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.movie-check input:checked {
+  border-color: oklch(0.76 0.09 85);
+  box-shadow: 0 0 10px oklch(0.55 0.15 70 / 0.5);
+}
+
+.movie-check input:checked::after {
+  opacity: 1;
+  transform: none;
+}
+
+.movie-check input:focus-visible {
+  outline: 2px solid oklch(0.76 0.09 85 / 0.8);
+  outline-offset: 3px;
+}
+
+.movie-check:has(input:checked) {
+  color: var(--text-primary);
+}
+
+.movie-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.movie-submit {
+  align-self: flex-start;
+  cursor: pointer;
+}
+
+.movie-submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.movie-status {
+  min-height: 1.4em;
+  margin: 0;
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 1.05rem;
+  color: var(--text-tertiary);
+}
+
+.movie-status.is-error { color: oklch(0.72 0.14 25); }
+.movie-status.is-success { color: oklch(0.82 0.1 85); }
+
+.movie-form.is-sent .movie-field,
+.movie-form.is-sent .movie-submit {
+  display: none;
+}
+
+.movie-section--signup::before {
+  background:
+    linear-gradient(to bottom,
+      var(--bg-page) 0%,
+      oklch(0.13 0.006 40 / 0.78) 22%,
+      oklch(0.13 0.006 40 / 0.88) 55%,
+      oklch(0.13 0.006 40 / 0.94) 85%,
+      var(--bg-page) 100%);
+}
