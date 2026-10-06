@@ -1138,6 +1138,10 @@ main.movie-main {
   gap: var(--space-3);
 }
 
+.movie-choices .movie-label {
+  margin-bottom: var(--space-5);
+}
+
 .movie-check {
   display: flex;
   align-items: center;
@@ -1208,7 +1212,8 @@ main.movie-main {
 .movie-submit {
   -webkit-appearance: none;
   appearance: none;
-  align-self: flex-start;
+  align-self: center;
+  margin-top: var(--space-2);
   cursor: pointer;
 }
 
@@ -1220,6 +1225,7 @@ main.movie-main {
 .movie-status {
   min-height: 1.4em;
   margin: 0;
+  text-align: center;
   font-family: "EB Garamond", Georgia, serif;
   font-size: 1.05rem;
   color: var(--text-tertiary);
