@@ -42,11 +42,20 @@
     setStatus("Sending…", "pending");
 
     try {
-      await fetch(endpoint, {
+      const response = await fetch(endpoint, {
         method: "POST",
-        mode: "no-cors",
         body: new URLSearchParams({ name, phone, types: types.join(", ") }),
       });
+      const result = await response.json();
+      if (!result.ok) {
+        submit.disabled = false;
+        return setStatus(
+          result.error === "bad_phone"
+            ? "Please enter a valid phone number."
+            : "Something went wrong. Please try again in a moment.",
+          "error"
+        );
+      }
       form.reset();
       form.classList.add("is-sent");
       setStatus("Thank you — you’re on the guest list. I’ll be in touch with invitations.", "success");
