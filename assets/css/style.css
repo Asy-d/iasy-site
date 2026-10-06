@@ -883,6 +883,7 @@ main.split-slider-main {
 /* Movie nights (hidden page) */
 .movie-body {
   background: var(--bg-page);
+  -webkit-text-size-adjust: 100%;
 }
 
 .movie-body::after {
@@ -1110,6 +1111,9 @@ main.movie-main {
 
 .movie-field input[type="text"],
 .movie-field input[type="tel"] {
+  -webkit-appearance: none;
+  appearance: none;
+  box-shadow: none;
   width: 100%;
   padding: 8px 2px 10px;
   background: transparent;
@@ -1202,6 +1206,8 @@ main.movie-main {
 }
 
 .movie-submit {
+  -webkit-appearance: none;
+  appearance: none;
   align-self: flex-start;
   cursor: pointer;
 }
