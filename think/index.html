@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Think</title>
+  <meta name="description" content="Simple visual tools to help you think through a problem: Pros &amp; Cons, Eisenhower Matrix, Decision Tree and Pre-Mortem.">
+  <link rel="icon" type="image/png" href="/assets/images/blank-favicon.png?v=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/think.css?v=1">
+</head>
+<body>
+  <svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+      <clipPath id="clip-tile"><rect width="120" height="120" rx="24"/></clipPath>
+    </defs>
+
+    <symbol id="ico-proscons" viewBox="0 0 120 120">
+      <g clip-path="url(#clip-tile)">
+        <rect width="120" height="120" fill="#1c2541"/>
+        <polygon points="120,0 120,120 0,120" fill="#1a96f0"/>
+        <circle cx="62" cy="58" r="38" fill="#a083e8"/>
+        <clipPath id="clip-pc-half"><polygon points="0,0 120,0 0,120"/></clipPath>
+        <circle cx="62" cy="58" r="38" fill="#f4624d" clip-path="url(#clip-pc-half)"/>
+      </g>
+    </symbol>
+
+    <symbol id="ico-eisenhower" viewBox="0 0 120 120">
+      <g clip-path="url(#clip-tile)">
+        <rect width="120" height="120" fill="#1c2541"/>
+        <rect x="14" y="14" width="42" height="42" rx="10" fill="#f4624d"/>
+        <rect x="64" y="14" width="42" height="42" rx="10" fill="#a083e8"/>
+        <rect x="14" y="64" width="42" height="42" rx="10" fill="#1a96f0"/>
+        <rect x="64" y="64" width="42" height="42" rx="10" fill="#ecbb2c"/>
+        <circle cx="35" cy="35" r="8" fill="#fff"/>
+      </g>
+    </symbol>
+
+    <symbol id="ico-tree" viewBox="0 0 120 120">
+      <g clip-path="url(#clip-tile)">
+        <rect width="120" height="120" fill="#1c2541"/>
+        <path d="M30 60 C52 60 52 34 78 34 M30 60 C52 60 52 86 78 86" fill="none" stroke="#eceef3" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="28" cy="60" r="15" fill="#35b58a"/>
+        <circle cx="86" cy="34" r="13" fill="#ecbb2c"/>
+        <circle cx="86" cy="86" r="13" fill="#a083e8"/>
+        <circle cx="106" cy="60" r="6" fill="#f4624d"/>
+      </g>
+    </symbol>
+
+    <symbol id="ico-premortem" viewBox="0 0 120 120">
+      <g clip-path="url(#clip-tile)">
+        <rect width="120" height="120" fill="#1a96f0"/>
+        <polygon points="0,0 52,52 0,52" fill="#a083e8"/>
+        <polygon points="120,120 68,68 120,68" fill="#a083e8"/>
+        <g transform="rotate(-35 60 60)"><rect x="-24" y="40" width="168" height="40" rx="20" fill="#1c2541"/></g>
+        <circle cx="68" cy="56" r="21" fill="#f4624d"/>
+        <circle cx="68" cy="56" r="10" fill="#fff"/>
+      </g>
+    </symbol>
+  </svg>
+
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Think, back to the top">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#1c2541"/><circle cx="12" cy="13" r="6" fill="#f4624d"/><circle cx="21" cy="19" r="6" fill="#a083e8" fill-opacity=".95"/></svg>
+      <span>think</span>
+    </a>
+    <nav class="topnav" aria-label="Page sections">
+      <a href="#problem">Start with a problem</a>
+      <a href="#explore">The tools</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- 1. Hero -->
+    <section class="hero">
+      <div class="blob blob-pink" aria-hidden="true"></div>
+      <div class="blob blob-blue" aria-hidden="true"></div>
+      <div class="blob blob-orange" aria-hidden="true"></div>
+
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Visual thinking tools</p>
+          <h1>Think clearer.<br>Decide faster.</h1>
+          <p class="lead">When your thoughts feel messy, the right framework can make the problem easier to see.</p>
+          <p class="body">These visual thinking tools help you organize your thoughts, explore possibilities, spot risks, and make decisions with more clarity.</p>
+          <p class="body strong">You do not need to know which framework to use. Start with your problem, and we’ll help you choose.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#problem" id="ctaStart">Start with a problem</a>
+            <a class="btn btn-ghost" href="#explore">Explore the tools</a>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="tile t1"><svg><use href="#ico-proscons"/></svg></div>
+          <div class="tile t2"><svg><use href="#ico-eisenhower"/></svg></div>
+          <div class="tile t3"><svg><use href="#ico-tree"/></svg></div>
+          <div class="tile t4"><svg><use href="#ico-premortem"/></svg></div>
+          <span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Why frameworks help -->
+    <section class="why wrap" data-reveal>
+      <h2 class="section-title small">Why a framework helps</h2>
+      <div class="why-grid">
+        <div class="why-item">
+          <span class="why-shape s-circle"></span>
+          <h3>Slow down messy thoughts</h3>
+          <p>Getting a worry out of your head and onto the screen already makes it smaller.</p>
+        </div>
+        <div class="why-item">
+          <span class="why-shape s-split"></span>
+          <h3>Make trade-offs visible</h3>
+          <p>Seeing options, priorities and risks side by side shows what you can’t hold in your head.</p>
+        </div>
+        <div class="why-item">
+          <span class="why-shape s-ring"></span>
+          <h3>Reach your own answer</h3>
+          <p>These tools don’t decide for you. They help you see clearly enough to decide for yourself.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 + 4. Main question + categories -->
+    <section class="problem wrap" id="problem">
+      <h2 class="big-q">What problem are you trying to solve?</h2>
+      <div class="problem-field">
+        <label class="sr-only" for="problemInput">Describe your problem</label>
+        <textarea id="problemInput" rows="3" placeholder="Describe what’s on your mind..." maxlength="600"></textarea>
+        <p class="example">For example: <button type="button" class="example-btn" id="exampleBtn">“Should I take this new job?”</button></p>
+      </div>
+
+      <h3 class="big-q mid">What kind of problem is it?</h3>
+      <div class="cat-grid" id="catGrid">
+        <article class="cat-card" data-cat="choose" data-tool="proscons">
+          <button class="cat-select" type="button" aria-pressed="false">
+            <span class="shape sh-circle" aria-hidden="true"></span>
+            <span class="cat-title">I’m choosing between options</span>
+            <span class="cat-desc">You’re comparing two or more choices and want to understand the advantages and disadvantages.</span>
+            <ul class="cat-ex"><li>Should I take this job?</li><li>Which apartment should I choose?</li><li>Should we use option A or option B?</li></ul>
+          </button>
+          <div class="cat-reveal" hidden>
+            <p><span class="pill">Pros &amp; Cons</span> Good choice. Pros &amp; Cons can help you see what you gain, what you give up, and which factors matter most.</p>
+            <button class="btn btn-accent cat-go" type="button">Use Pros &amp; Cons</button>
+          </div>
+        </article>
+
+        <article class="cat-card" data-cat="prioritize" data-tool="eisenhower">
+          <button class="cat-select" type="button" aria-pressed="false">
+            <span class="shape sh-square" aria-hidden="true"></span>
+            <span class="cat-title">I have too many things to do</span>
+            <span class="cat-desc">You need to prioritize tasks, requests, ideas, or responsibilities.</span>
+            <ul class="cat-ex"><li>What should I work on first?</li><li>Which tasks actually matter?</li><li>What can wait?</li></ul>
+          </button>
+          <div class="cat-reveal" hidden>
+            <p><span class="pill">Eisenhower Matrix</span> The Eisenhower Matrix helps you separate what is important from what only feels urgent, so you can focus your energy where it matters most.</p>
+            <button class="btn btn-accent cat-go" type="button">Use Eisenhower Matrix</button>
+          </div>
+        </article>
+
+        <article class="cat-card" data-cat="paths" data-tool="tree">
+          <button class="cat-select" type="button" aria-pressed="false">
+            <span class="shape sh-triangle" aria-hidden="true"></span>
+            <span class="cat-title">I’m deciding between different paths</span>
+            <span class="cat-desc">One decision could lead to several possible outcomes.</span>
+            <ul class="cat-ex"><li>What happens if I choose this direction?</li><li>Should I launch now or wait?</li><li>What could happen after each choice?</li></ul>
+          </button>
+          <div class="cat-reveal" hidden>
+            <p><span class="pill">Decision Tree</span> A Decision Tree helps you map different paths and see what each choice could lead to before you commit.</p>
+            <button class="btn btn-accent cat-go" type="button">Build a Decision Tree</button>
+          </div>
+        </article>
+
+        <article class="cat-card" data-cat="risks" data-tool="premortem">
+          <button class="cat-select" type="button" aria-pressed="false">
+            <span class="shape sh-ring" aria-hidden="true"></span>
+            <span class="cat-title">I want to know what could go wrong</span>
+            <span class="cat-desc">You have an idea, plan, project, or decision and want to spot risks before moving forward.</span>
+            <ul class="cat-ex"><li>Why might this project fail?</li><li>What are we overlooking?</li><li>What problems could happen later?</li></ul>
+          </button>
+          <div class="cat-reveal" hidden>
+            <p><span class="pill">Pre-Mortem</span> A Pre-Mortem asks you to imagine the plan has already failed. Then you work backward to discover why, and what you can do now to prevent it.</p>
+            <button class="btn btn-accent cat-go" type="button">Run a Pre-Mortem</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 5. Recommendation -->
+    <section class="recommend wrap" id="recommend" hidden>
+      <div class="rec-card" id="recCard">
+        <p class="eyebrow">We recommend</p>
+        <div class="rec-head">
+          <svg class="rec-ico" aria-hidden="true"><use href="#ico-proscons" id="recIconUse"/></svg>
+          <h2 id="recName">Pros &amp; Cons</h2>
+        </div>
+        <div class="rec-grid">
+          <div id="recProblemWrap">
+            <p class="label">Your problem</p>
+            <blockquote id="recProblem"></blockquote>
+          </div>
+          <div>
+            <p class="label">Why this works for your problem</p>
+            <p id="recWhy"></p>
+          </div>
+        </div>
+        <div class="rec-actions">
+          <button class="btn btn-accent" type="button" id="recStart">Start thinking</button>
+          <button class="link-btn" type="button" id="recOther" aria-expanded="false">Choose a different tool</button>
+        </div>
+        <div class="rec-others" id="recOthers" hidden>
+          <button class="chip" type="button" data-pick="proscons">Pros &amp; Cons</button>
+          <button class="chip" type="button" data-pick="eisenhower">Eisenhower Matrix</button>
+          <button class="chip" type="button" data-pick="tree">Decision Tree</button>
+          <button class="chip" type="button" data-pick="premortem">Pre-Mortem</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Workspace -->
+    <section class="workspace wrap" id="workspace" hidden>
+      <div class="ws-card" id="wsCard">
+        <div class="ws-top">
+          <div class="ws-title">
+            <svg class="ws-ico" aria-hidden="true"><use href="#ico-proscons" id="wsIconUse"/></svg>
+            <div>
+              <h2 id="wsName">Pros &amp; Cons</h2>
+              <p id="wsQuestion" class="ws-q"></p>
+            </div>
+          </div>
+          <div class="ws-tools">
+            <button class="link-btn" type="button" id="wsSwitch" aria-expanded="false">Switch tool</button>
+            <button class="link-btn subtle" type="button" id="wsReset">Start over</button>
+          </div>
+        </div>
+        <div class="rec-others" id="wsOthers" hidden>
+          <button class="chip" type="button" data-pick="proscons">Pros &amp; Cons</button>
+          <button class="chip" type="button" data-pick="eisenhower">Eisenhower Matrix</button>
+          <button class="chip" type="button" data-pick="tree">Decision Tree</button>
+          <button class="chip" type="button" data-pick="premortem">Pre-Mortem</button>
+        </div>
+
+        <div class="ws-problem">
+          <label for="wsProblem">Your problem</label>
+          <input type="text" id="wsProblem" placeholder="Describe what’s on your mind..." maxlength="600" autocomplete="off">
+        </div>
+
+        <div id="toolBody" class="tool-body"></div>
+      </div>
+    </section>
+
+    <!-- 7. Explore all tools -->
+    <section class="explore wrap" id="explore">
+      <h2 class="section-title">Four ways to think through a problem</h2>
+      <div class="explore-grid">
+        <button class="ex-card t-proscons" type="button" data-pick="proscons">
+          <span class="ex-preview" aria-hidden="true">
+            <svg viewBox="0 0 160 90"><rect x="8" y="8" width="68" height="74" rx="10" fill="#e1f1fd"/><rect x="84" y="8" width="68" height="74" rx="10" fill="#fdf0ee"/><rect x="16" y="18" width="52" height="10" rx="5" fill="#1a96f0"/><rect x="16" y="34" width="40" height="10" rx="5" fill="#1a96f0" opacity=".55"/><rect x="16" y="50" width="48" height="10" rx="5" fill="#1a96f0" opacity=".3"/><rect x="92" y="18" width="44" height="10" rx="5" fill="#f4624d"/><rect x="92" y="34" width="52" height="10" rx="5" fill="#f4624d" opacity=".55"/></svg>
+          </span>
+          <span class="ex-name">Pros &amp; Cons</span>
+          <span class="ex-sub">Compare choices</span>
+          <span class="ex-best"><b>Best when:</b> You are deciding whether something is worth doing.</span>
+          <span class="ex-go">Try it →</span>
+        </button>
+        <button class="ex-card t-eisenhower" type="button" data-pick="eisenhower">
+          <span class="ex-preview" aria-hidden="true">
+            <svg viewBox="0 0 160 90"><rect x="24" y="6" width="58" height="38" rx="9" fill="#a083e8"/><rect x="86" y="6" width="58" height="38" rx="9" fill="#e9e3fa"/><rect x="24" y="48" width="58" height="38" rx="9" fill="#e9e3fa"/><rect x="86" y="48" width="58" height="38" rx="9" fill="#e9e3fa"/><circle cx="42" cy="25" r="5" fill="#fff"/><circle cx="58" cy="25" r="5" fill="#fff" opacity=".6"/><circle cx="104" cy="25" r="5" fill="#a083e8"/><circle cx="42" cy="67" r="5" fill="#a083e8" opacity=".5"/></svg>
+          </span>
+          <span class="ex-name">Eisenhower Matrix</span>
+          <span class="ex-sub">Prioritize what matters</span>
+          <span class="ex-best"><b>Best when:</b> Everything feels important at the same time.</span>
+          <span class="ex-go">Try it →</span>
+        </button>
+        <button class="ex-card t-tree" type="button" data-pick="tree">
+          <span class="ex-preview" aria-hidden="true">
+            <svg viewBox="0 0 160 90"><path d="M32 45 C58 45 56 22 86 22 M32 45 C58 45 56 68 86 68 M96 22 C114 22 112 12 130 12 M96 22 C114 22 112 34 130 34" fill="none" stroke="#35b58a" stroke-width="3" stroke-linecap="round" opacity=".6"/><rect x="8" y="35" width="28" height="20" rx="10" fill="#35b58a"/><rect x="82" y="12" width="26" height="20" rx="10" fill="#bfe8d8"/><rect x="82" y="58" width="26" height="20" rx="10" fill="#bfe8d8"/><rect x="126" y="4" width="26" height="16" rx="8" fill="#dff3ea"/><rect x="126" y="26" width="26" height="16" rx="8" fill="#dff3ea"/></svg>
+          </span>
+          <span class="ex-name">Decision Tree</span>
+          <span class="ex-sub">Explore different paths</span>
+          <span class="ex-best"><b>Best when:</b> One decision could lead to several possible outcomes.</span>
+          <span class="ex-go">Try it →</span>
+        </button>
+        <button class="ex-card t-premortem" type="button" data-pick="premortem">
+          <span class="ex-preview" aria-hidden="true">
+            <svg viewBox="0 0 160 90"><rect x="10" y="10" width="100" height="14" rx="7" fill="#fdd9d3"/><rect x="10" y="10" width="86" height="14" rx="7" fill="#f4624d"/><rect x="10" y="38" width="100" height="14" rx="7" fill="#fdd9d3"/><rect x="10" y="38" width="56" height="14" rx="7" fill="#f4624d" opacity=".7"/><rect x="10" y="66" width="100" height="14" rx="7" fill="#fdd9d3"/><rect x="10" y="66" width="28" height="14" rx="7" fill="#f4624d" opacity=".45"/><circle cx="136" cy="45" r="16" fill="#f4624d"/><circle cx="136" cy="45" r="7" fill="#fff"/></svg>
+          </span>
+          <span class="ex-name">Pre-Mortem</span>
+          <span class="ex-sub">Spot problems early</span>
+          <span class="ex-best"><b>Best when:</b> You want to pressure-test an idea before committing.</span>
+          <span class="ex-go">Try it →</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 8. Closing -->
+    <section class="closing">
+      <div class="wrap closing-inner" data-reveal>
+        <span class="dot d1" aria-hidden="true"></span><span class="dot d2" aria-hidden="true"></span>
+        <p class="closing-line">You don’t always need more time to think. Sometimes you just need a better way to see the problem.</p>
+        <a class="btn btn-primary" href="#problem" id="ctaClose">Start with a problem</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot wrap">
+    <p>Nothing you write here leaves your browser. It’s saved only on this device.</p>
+  </footer>
+
+  <script src="/assets/js/think.js?v=1"></script>
+</body>
+</html>
