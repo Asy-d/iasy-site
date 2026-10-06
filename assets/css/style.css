@@ -1248,3 +1248,18 @@ main.movie-main {
       oklch(0.13 0.006 40 / 0.94) 85%,
       var(--bg-page) 100%);
 }
+
+@media (max-width: 768px) {
+  .movie-section--intro {
+    min-height: calc(100vh + 288px);
+    min-height: calc(100svh + 288px);
+  }
+
+  .movie-section--intro .movie-image {
+    bottom: auto;
+    height: calc(100vh + 80px);
+    height: calc(100svh + 80px);
+    -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+  }
+}
