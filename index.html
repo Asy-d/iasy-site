@@ -2,12 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=/art/">
-  <link rel="canonical" href="/art/">
-  <title>Art</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome</title>
+  <meta name="description" content="Asy’s site: visual art, movie nights, and visual thinking tools.">
   <link rel="icon" type="image/png" href="/assets/images/blank-favicon.png?v=1">
+  <link rel="preload" as="image" href="/assets/images/landing/orb.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/landing.css?v=1">
 </head>
 <body>
-  <p>Redirecting to <a href="/art/">/art/</a>&hellip;</p>
+  <div class="orb" aria-hidden="true"></div>
+
+  <main class="landing">
+    <p class="greeting">Hi, you have entered Asy’s site.</p>
+    <h1>What are you looking for?</h1>
+
+    <nav class="choices" aria-label="Where would you like to go?">
+      <a class="choice" href="/art/">
+        <span class="choice-dot dot-coral" aria-hidden="true"></span>
+        <span class="choice-label">Visual Art</span>
+        <span class="choice-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="choice" href="/movie/">
+        <span class="choice-dot dot-magenta" aria-hidden="true"></span>
+        <span class="choice-label">Movie night</span>
+        <span class="choice-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="choice" href="/think/">
+        <span class="choice-dot dot-green" aria-hidden="true"></span>
+        <span class="choice-label">Visual thinking tools</span>
+        <span class="choice-arrow" aria-hidden="true">→</span>
+      </a>
+    </nav>
+  </main>
 </body>
 </html>
