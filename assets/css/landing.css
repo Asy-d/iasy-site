@@ -25,7 +25,7 @@ body {
   position: fixed;
   inset: 0;
   z-index: 0;
-  background: #fff url("/assets/images/landing/orb.webp") 100% 50% / cover no-repeat;
+  background: #fff url("/assets/images/landing/orb.webp?v=2") 100% 50% / cover no-repeat;
   animation: orb-drift 18s ease-in-out infinite alternate;
   will-change: transform;
 }
@@ -133,7 +133,7 @@ h1 {
   content: "";
   position: absolute;
   inset: 0;
-  background: #000 url("/assets/images/landing/orb-dark.webp") 100% 50% / cover no-repeat;
+  background: #000 url("/assets/images/landing/orb-dark.webp?v=2") 100% 50% / cover no-repeat;
   opacity: 0;
   transition: opacity 0.7s ease;
 }

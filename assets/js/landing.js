@@ -17,8 +17,8 @@
 
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  const IMG_SRC = "/assets/images/landing/orb.webp";
-  const IMG_DARK_SRC = "/assets/images/landing/orb-dark.webp";
+  const IMG_SRC = "/assets/images/landing/orb.webp?v=2";
+  const IMG_DARK_SRC = "/assets/images/landing/orb-dark.webp?v=2";
   const mobileMQ = window.matchMedia("(max-width: 760px), (max-aspect-ratio: 1/1)");
   const DPR = Math.min(window.devicePixelRatio || 1, 1.5);
 
@@ -48,7 +48,7 @@
     uniform vec2 u_mouse;
     uniform float u_hover;
 
-    const vec2 C = vec2(0.715, 0.67);     // orb centre in image space
+    const vec2 C = vec2(0.693, 0.485);     // orb centre in image space
     const vec2 ASPECT = vec2(1.5, 1.0);   // image width : height
 
     float hash(vec2 p) {
