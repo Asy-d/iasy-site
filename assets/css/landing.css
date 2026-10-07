@@ -29,7 +29,7 @@ body {
   will-change: transform;
 }
 /* Live liquid layer (added by landing.js) */
-.orb-gl, .orb-fx {
+.orb-gl {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -38,7 +38,7 @@ body {
   transition: opacity 1.4s ease;
 }
 .orb.gl-on { animation: none; }
-.orb.gl-on .orb-gl, .orb.gl-on .orb-fx { opacity: 1; }
+.orb.gl-on .orb-gl { opacity: 1; }
 
 @keyframes orb-drift {
   from { transform: translate3d(0, 0, 0) scale(1); }

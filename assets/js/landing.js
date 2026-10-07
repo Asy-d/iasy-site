@@ -9,16 +9,13 @@
   const mobileMQ = window.matchMedia("(max-width: 760px), (max-aspect-ratio: 1/1)");
   const DPR = Math.min(window.devicePixelRatio || 1, 1.5);
 
-  const glCanvas = document.createElement("canvas");
-  glCanvas.className = "orb-gl";
-  const fxCanvas = document.createElement("canvas");
-  fxCanvas.className = "orb-fx";
-  orb.append(glCanvas, fxCanvas);
+  const canvas = document.createElement("canvas");
+  canvas.className = "orb-gl";
+  orb.append(canvas);
 
-  const gl = glCanvas.getContext("webgl", { alpha: false, antialias: false, premultipliedAlpha: false });
+  const gl = canvas.getContext("webgl", { alpha: false, antialias: false, premultipliedAlpha: false });
   if (!gl) {
-    glCanvas.remove();
-    fxCanvas.remove();
+    canvas.remove();
     return;
   }
 
@@ -35,6 +32,9 @@
     uniform float u_time;
     uniform vec2 u_mouse;
     uniform float u_hover;
+
+    const vec2 C = vec2(0.71, 0.57);      // orb centre in image space
+    const vec2 ASPECT = vec2(1.5, 1.0);   // image width : height
 
     float hash(vec2 p) {
       p = fract(p * vec2(123.34, 456.21));
@@ -58,29 +58,52 @@
       return c * cs + cross(k, c) * sn + k * dot(k, c) * (1.0 - cs);
     }
 
+    // Rotate around the orb's centre; the middle turns further than the rim, so it swirls.
+    vec2 swirl(vec2 uv, float ang, float twist, float scale) {
+      vec2 p = (uv - C) * ASPECT / scale;
+      float r = length(p);
+      float a = ang + twist * exp(-r * r * 7.0);
+      float cs = cos(a), sn = sin(a);
+      p = mat2(cs, -sn, sn, cs) * p;
+      return p / ASPECT + C;
+    }
+    vec3 sampleOrb(vec2 uv, vec2 d) {
+      return vec3(texture2D(u_tex, uv + d).r,
+                  texture2D(u_tex, uv + d * 1.07).g,
+                  texture2D(u_tex, uv + d * 1.14).b);
+    }
+
     void main() {
       vec2 frag = vec2(gl_FragCoord.x, u_res.y - gl_FragCoord.y);
       vec2 uv = (frag - u_rect.xy) / u_rect.zw;
-      float t = u_time * 0.055;
+      float t = u_time;
 
+      // Liquid drift
+      float f = t * 0.05;
       vec2 p = uv * vec2(3.0, 2.0) * 1.35;
-      vec2 w1 = vec2(fbm(p + vec2(t, -t * 0.7)),
-                     fbm(p + vec2(5.2 - t * 0.8, 1.3 + t)));
-      vec2 w2 = vec2(fbm(p * 1.7 + w1 * 2.2 + vec2(-t * 1.3, t * 0.5)),
-                     fbm(p * 1.7 + w1 * 2.2 + vec2(3.1 + t * 0.6, 7.4 - t)));
-      vec2 disp = (w2 - 0.5) * 0.042 + (w1 - 0.5) * 0.024;
+      vec2 w1 = vec2(fbm(p + vec2(f, -f * 0.7)), fbm(p + vec2(5.2 - f * 0.8, 1.3 + f)));
+      vec2 w2 = vec2(fbm(p * 1.7 + w1 * 2.2 + vec2(-f * 1.3, f * 0.5)),
+                     fbm(p * 1.7 + w1 * 2.2 + vec2(3.1 + f * 0.6, 7.4 - f)));
+      vec2 disp = (w2 - 0.5) * 0.04 + (w1 - 0.5) * 0.022;
 
+      // Pointer gently parts the liquid
       vec2 m = (u_mouse - u_rect.xy) / u_rect.zw;
       vec2 dv = uv - m;
-      float d2 = dot(dv, dv);
-      disp += normalize(dv + 1e-5) * 0.035 * exp(-d2 * 45.0) * u_hover;
+      disp += normalize(dv + 1e-5) * 0.03 * exp(-dot(dv, dv) * 45.0) * u_hover;
 
-      vec3 col;
-      col.r = texture2D(u_tex, uv + disp).r;
-      col.g = texture2D(u_tex, uv + disp * 1.07).g;
-      col.b = texture2D(u_tex, uv + disp * 1.14).b;
+      // Two copies of the orb turning in opposite directions at different speeds
+      vec3 a = sampleOrb(swirl(uv, t * 0.07, 1.4 * sin(t * 0.11), 1.0), disp);
+      vec3 b = sampleOrb(swirl(uv, -t * 0.045 + 2.2, -1.1 * sin(t * 0.085 + 1.0), 1.06), disp * 0.8);
 
-      col = hueShift(col, sin(u_time * 0.18) * 0.2);
+      // Blend them like inks on white paper: they merge, deepen where they overlap, then part again
+      vec3 inkA = 1.0 - a, inkB = 1.0 - b;
+      float w = 0.5 + 0.5 * sin(t * 0.14);
+      vec3 ink = mix(inkA, inkB, w) + 0.28 * min(inkA, inkB);
+      vec3 col = clamp(1.0 - ink, 0.0, 1.0);
+      float lum = dot(col, vec3(0.299, 0.587, 0.114));
+      col = clamp(mix(vec3(lum), col, 1.35), 0.0, 1.0);   // keep blended colours vivid
+
+      col = hueShift(col, sin(t * 0.12) * 0.2);
       gl_FragColor = vec4(clamp(col, 0.0, 1.0), 1.0);
     }`;
 
@@ -100,8 +123,7 @@
     gl.linkProgram(prog);
     if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
   } catch (e) {
-    glCanvas.remove();
-    fxCanvas.remove();
+    canvas.remove();
     return;
   }
   gl.useProgram(prog);
@@ -127,63 +149,17 @@
     if (!w || !h) return;
     W = Math.round(w * DPR);
     H = Math.round(h * DPR);
-    [glCanvas, fxCanvas].forEach((c) => { c.width = W; c.height = H; });
+    canvas.width = W;
+    canvas.height = H;
     gl.viewport(0, 0, W, H);
 
     let s, px;
     if (mobileMQ.matches) { s = h / IH; px = 0.84; }
     else { s = Math.max(w / IW, h / IH); px = 1; }
     rect = [(w - IW * s) * px * DPR, (h - IH * s) * 0.5 * DPR, IW * s * DPR, IH * s * DPR];
-    while (particles.length < PARTICLES) particles.push({});
-    particles.forEach((p) => spawn(p, true));
   }
 
-  /* ---------- Particles ---------- */
-  const fx = fxCanvas.getContext("2d");
-  const COLORS = ["255,90,54", "196,47,168", "85,214,138", "255,181,46", "123,92,255"];
-  const PARTICLES = mobileMQ.matches ? 26 : 40;
-  const particles = [];
-
-  function orbCenter() {
-    return { x: rect[0] + 0.71 * rect[2], y: rect[1] + 0.57 * rect[3], rx: 0.24 * rect[2], ry: 0.36 * rect[3] };
-  }
-  function spawn(p, initial) {
-    const c = orbCenter();
-    const a = Math.random() * Math.PI * 2;
-    const r = Math.sqrt(Math.random()) * 1.1;
-    p.x = c.x + Math.cos(a) * c.rx * r;
-    p.y = c.y + Math.sin(a) * c.ry * r;
-    p.r = (1.4 + Math.random() * 3.6) * DPR;
-    p.vx = (Math.random() - 0.5) * 9 * DPR;
-    p.vy = -(5 + Math.random() * 16) * DPR;
-    p.life = 7 + Math.random() * 9;
-    p.age = initial ? Math.random() * p.life : 0;
-    p.phase = Math.random() * Math.PI * 2;
-    p.color = COLORS[(Math.random() * COLORS.length) | 0];
-    return p;
-  }
-  
-  function drawParticles(dt, time) {
-    fx.clearRect(0, 0, W, H);
-    for (const p of particles) {
-      p.age += dt;
-      if (p.age >= p.life) spawn(p, false);
-      p.x += (p.vx + Math.sin(time * 0.6 + p.phase) * 6 * DPR) * dt;
-      p.y += p.vy * dt;
-      const k = Math.sin(Math.PI * (p.age / p.life));
-      const alpha = 0.55 * k * k;
-      const g = fx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 3);
-      g.addColorStop(0, `rgba(${p.color},${alpha})`);
-      g.addColorStop(0.35, `rgba(${p.color},${alpha * 0.45})`);
-      g.addColorStop(1, `rgba(${p.color},0)`);
-      fx.fillStyle = g;
-      fx.beginPath();
-      fx.arc(p.x, p.y, p.r * 3, 0, Math.PI * 2);
-      fx.fill();
-    }
-  }
-
-  /* ---------- Pointer (desktop): the liquid gently parts around the cursor ---------- */
+  /* ---------- Pointer (desktop only) ---------- */
   window.addEventListener("pointermove", (e) => {
     if (e.pointerType === "touch") return;
     const b = orb.getBoundingClientRect();
@@ -216,23 +192,21 @@
     const frame = (now) => {
       const dt = Math.min((now - last) / 1000, 0.1);
       last = now;
-      const time = now / 1000;
       mouse.hover += (mouse.target - mouse.hover) * Math.min(dt * 3, 1);
 
       gl.uniform2f(U.u_res, W, H);
       gl.uniform4f(U.u_rect, rect[0], rect[1], rect[2], rect[3]);
-      gl.uniform1f(U.u_time, time);
+      gl.uniform1f(U.u_time, now / 1000);
       gl.uniform2f(U.u_mouse, mouse.x, mouse.y);
       gl.uniform1f(U.u_hover, mouse.hover);
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-      drawParticles(dt, time);
 
       if (first) { first = false; orb.classList.add("gl-on"); }
       requestAnimationFrame(frame);
     };
     requestAnimationFrame(frame);
   };
-  img.onerror = () => { glCanvas.remove(); fxCanvas.remove(); };
+  img.onerror = () => canvas.remove();
   img.src = IMG_SRC;
 
   let resizeTimer;
