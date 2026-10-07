@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/think.css?v=2">
+  <link rel="stylesheet" href="/assets/css/think.css?v=26">
 </head>
 <body>
   <svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
@@ -59,6 +59,13 @@
         <circle cx="68" cy="56" r="10" fill="#fff"/>
       </g>
     </symbol>
+
+    <symbol id="ico-burst" viewBox="181.83 61.62 660.34 660.34">
+      <circle cx="512" cy="391.79" r="330.17" fill="#1e243a"/>
+      <polygon points="512.01 254.06 597.13 129.79 592.97 280.37 734.87 229.87 643.01 349.23 787.49 391.79 643.01 434.36 734.87 553.72 592.97 503.23 597.13 653.8 512.01 529.54 426.88 653.8 431.03 503.23 289.13 553.72 381 434.36 236.51 391.79 381 349.23 289.13 229.87 431.03 280.37 426.88 129.79 512.01 254.06" fill="#9f83e4"/>
+      <polygon points="512 291.58 573.94 201.16 570.91 310.72 674.16 273.98 607.32 360.82 712.45 391.79 607.32 422.76 674.16 509.61 570.91 472.88 573.94 582.43 512 492.02 450.06 582.43 453.09 472.88 349.84 509.61 416.69 422.76 311.55 391.79 416.69 360.82 349.84 273.98 453.09 310.72 450.06 201.16 512 291.58" fill="#0597f2"/>
+      <polygon points="512 326.65 552.26 267.88 550.29 339.09 617.41 315.21 573.96 371.66 642.29 391.79 573.96 411.92 617.41 468.38 550.29 444.5 552.26 515.71 512 456.94 471.74 515.71 473.71 444.5 406.59 468.38 450.05 411.92 381.71 391.79 450.05 371.66 406.59 315.21 473.71 339.09 471.74 267.88 512 326.65" fill="#f26052"/>
+    </symbol>
   </svg>
 
   <header class="topbar">
@@ -82,8 +89,7 @@
           <p class="eyebrow">Visual thinking tools</p>
           <h1>Think clearer.<br>Decide faster.</h1>
           <p class="lead">When your thoughts feel messy, the right framework can make the problem easier to see.</p>
-          <p class="body">These visual thinking tools help you organize your thoughts, explore possibilities, spot risks, and make decisions with more clarity.</p>
-          <p class="body strong">You do not need to know which framework to use. Start with your problem, and we’ll help you choose.</p>
+          <p class="body">These visual thinking tools help you organize your thoughts, explore new possibilities, uncover risks, and make clearer decisions. Inspired by design thinking, each tool is designed to simplify complex ideas, reduce cognitive overload, and create more space for creative thinking.</p>
           <div class="hero-cta">
             <a class="btn btn-primary" href="#problem" id="ctaStart">Start with a problem</a>
             <a class="btn btn-ghost" href="#explore">Explore the tools</a>
@@ -124,14 +130,7 @@
 
     <!-- 3 + 4. Main question + categories -->
     <section class="problem wrap" id="problem">
-      <h2 class="big-q">What problem are you trying to solve?</h2>
-      <div class="problem-field">
-        <label class="sr-only" for="problemInput">Describe your problem</label>
-        <textarea id="problemInput" rows="3" placeholder="Describe what’s on your mind..." maxlength="600"></textarea>
-        <p class="example">For example: <button type="button" class="example-btn" id="exampleBtn">“Should I take this new job?”</button></p>
-      </div>
-
-      <h3 class="big-q mid">What kind of problem is it?</h3>
+      <h2 class="big-q mid">What kind of problem is it?</h2>
       <div class="cat-grid" id="catGrid">
         <article class="cat-card" data-cat="choose" data-tool="proscons">
           <button class="cat-select" type="button" aria-pressed="false">
@@ -162,12 +161,12 @@
         <article class="cat-card" data-cat="paths" data-tool="tree">
           <button class="cat-select" type="button" aria-pressed="false">
             <span class="shape sh-triangle" aria-hidden="true"></span>
-            <span class="cat-title">I’m deciding between different paths</span>
-            <span class="cat-desc">One decision could lead to several possible outcomes.</span>
-            <ul class="cat-ex"><li>What happens if I choose this direction?</li><li>Should I launch now or wait?</li><li>What could happen after each choice?</li></ul>
+            <span class="cat-title">I want to see the big picture</span>
+            <span class="cat-desc">You have several options and want to map them out, along with where each one could lead.</span>
+            <ul class="cat-ex"><li>How do all my options compare?</li><li>What could each choice lead to?</li><li>Which path makes the most sense?</li></ul>
           </button>
           <div class="cat-reveal" hidden>
-            <p><span class="pill">Decision Tree</span> A Decision Tree helps you map different paths and see what each choice could lead to before you commit.</p>
+            <p><span class="pill">Decision Tree</span> A Decision Tree puts all your options in one place, along with their possible outcomes, so you can make better, faster and more informed decisions.</p>
             <button class="btn btn-accent cat-go" type="button">Build a Decision Tree</button>
           </div>
         </article>
@@ -274,11 +273,11 @@
         </button>
         <button class="ex-card t-tree" type="button" data-pick="tree">
           <span class="ex-preview" aria-hidden="true">
-            <svg viewBox="0 0 160 90"><path d="M32 45 C58 45 56 22 86 22 M32 45 C58 45 56 68 86 68 M96 22 C114 22 112 12 130 12 M96 22 C114 22 112 34 130 34" fill="none" stroke="#35b58a" stroke-width="3" stroke-linecap="round" opacity=".6"/><rect x="8" y="35" width="28" height="20" rx="10" fill="#35b58a"/><rect x="82" y="12" width="26" height="20" rx="10" fill="#bfe8d8"/><rect x="82" y="58" width="26" height="20" rx="10" fill="#bfe8d8"/><rect x="126" y="4" width="26" height="16" rx="8" fill="#dff3ea"/><rect x="126" y="26" width="26" height="16" rx="8" fill="#dff3ea"/></svg>
+            <svg viewBox="0 0 160 90"><path d="M80 18 C80 26 30 24 30 32 M80 18 V32 M80 18 C80 26 130 24 130 32 M14 42 V56 H20 M14 42 V72 H20 M64 42 V56 H70" fill="none" stroke="#35b58a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity=".6"/><rect x="44" y="4" width="72" height="14" rx="7" fill="#1c2541"/><rect x="8" y="32" width="44" height="12" rx="6" fill="#35b58a"/><rect x="58" y="32" width="44" height="12" rx="6" fill="#35b58a"/><rect x="108" y="32" width="44" height="12" rx="6" fill="#35b58a"/><rect x="20" y="50" width="32" height="11" rx="5.5" fill="#bfe8d8"/><rect x="20" y="66" width="32" height="11" rx="5.5" fill="#bfe8d8"/><rect x="70" y="50" width="32" height="11" rx="5.5" fill="#bfe8d8"/></svg>
           </span>
           <span class="ex-name">Decision Tree</span>
-          <span class="ex-sub">Explore different paths</span>
-          <span class="ex-best"><b>Best when:</b> One decision could lead to several possible outcomes.</span>
+          <span class="ex-sub">See the big picture</span>
+          <span class="ex-best"><b>Best when:</b> You’re weighing several options and want to see where each one leads.</span>
           <span class="ex-go">Try it →</span>
         </button>
         <button class="ex-card t-premortem" type="button" data-pick="premortem">
@@ -307,6 +306,6 @@
     <p>Nothing you write here leaves your browser. It’s saved only on this device.</p>
   </footer>
 
-  <script src="/assets/js/think.js?v=1"></script>
+  <script src="/assets/js/think.js?v=20"></script>
 </body>
 </html>
