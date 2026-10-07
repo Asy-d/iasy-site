@@ -18,6 +18,7 @@ body {
   font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  transition: background-color 0.7s ease;
 }
 
 .orb {
@@ -94,7 +95,7 @@ h1 {
   font-weight: 600;
   letter-spacing: -0.01em;
   box-shadow: 0 16px 30px -18px rgba(17, 19, 32, 0.7);
-  transition: transform 0.35s var(--ease), background 0.25s, border-color 0.25s, box-shadow 0.35s var(--ease);
+  transition: transform 0.35s var(--ease), background 0.5s, border-color 0.5s, color 0.5s, box-shadow 0.5s var(--ease);
 }
 
 .choice-dot {
@@ -125,6 +126,44 @@ h1 {
 .choice:focus-visible { outline: 3px solid var(--coral); outline-offset: 3px; }
 .choice:active { transform: translateX(6px) scale(0.985); }
 
+/* Dark state: hovering or focusing the buttons turns the page dark and the buttons bright */
+.greeting, h1 { transition: color 0.6s ease; }
+.orb { transition: background-color 0.7s ease; }
+.orb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #000 url("/assets/images/landing/orb-dark.webp") 100% 50% / cover no-repeat;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+.orb.gl-on::after { display: none; }
+
+body.is-dark { background: #000; }
+body.gl-bg { transition: none; }
+.is-dark .orb { background-color: #000; }
+.is-dark .orb::after { opacity: 1; }
+.is-dark .greeting { color: rgba(255, 255, 255, 0.72); }
+.is-dark h1 { color: #fff; }
+
+.choice:nth-child(1) { --glow: 255, 90, 54; }
+.choice:nth-child(2) { --glow: 214, 58, 190; }
+.choice:nth-child(3) { --glow: 85, 214, 138; }
+
+.is-dark .choice {
+  background: #fff;
+  border-color: #fff;
+  color: #111320;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25), 0 18px 40px -18px rgba(255, 255, 255, 0.45);
+}
+.is-dark .choice:hover,
+.is-dark .choice:focus-visible {
+  background: #fff;
+  border-color: #fff;
+  color: #111320;
+  box-shadow: 0 0 0 1px rgba(var(--glow), 0.9), 0 0 38px 6px rgba(var(--glow), 0.55), 0 22px 44px -16px rgba(var(--glow), 0.7);
+}
+
 /* Entrance */
 .greeting, h1, .choice {
   opacity: 0;
@@ -144,6 +183,10 @@ h1 { animation-delay: 0.22s; }
     inset: auto 0 0 0;
     height: 60vh;
     height: 60svh;
+    background-size: auto 100%;
+    background-position: 84% 50%;
+  }
+  .orb::after {
     background-size: auto 100%;
     background-position: 84% 50%;
   }
