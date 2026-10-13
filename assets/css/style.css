@@ -484,10 +484,11 @@ main.split-slider-main {
 }
 
 .split-dot {
+  --glow: 26, 150, 240;
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  border: 2px solid var(--border-subtle);
+  border: 0;
   background-color: var(--bg-surface);
   background-size: cover;
   background-position: center;
@@ -496,7 +497,7 @@ main.split-slider-main {
   padding: 0;
   transition: opacity var(--duration-base) var(--ease-out),
     transform var(--duration-base) var(--ease-out),
-    border-color var(--duration-base) var(--ease-out);
+    box-shadow var(--duration-base) var(--ease-out);
   box-shadow: var(--shadow-s);
 }
 
@@ -504,17 +505,21 @@ main.split-slider-main {
   opacity: 0.85;
 }
 
+.split-dot:focus-visible {
+  outline: 2px solid rgb(var(--glow));
+  outline-offset: 4px;
+}
+
 .split-dot.is-active {
   opacity: 1;
-  border-color: var(--accent);
   transform: scale(1.12);
-  box-shadow: 0 0 14px 3px oklch(0.62 0.18 255 / 0.65), 0 0 34px 8px oklch(0.62 0.18 255 / 0.35);
+  box-shadow: 0 0 16px 4px rgba(var(--glow), 0.6), 0 0 40px 10px rgba(var(--glow), 0.32);
   animation: split-dot-glow 2.6s ease-in-out infinite alternate;
 }
 
 @keyframes split-dot-glow {
-  from { box-shadow: 0 0 10px 2px oklch(0.62 0.18 255 / 0.5), 0 0 26px 6px oklch(0.62 0.18 255 / 0.25); }
-  to { box-shadow: 0 0 20px 5px oklch(0.62 0.18 255 / 0.8), 0 0 46px 12px oklch(0.62 0.18 255 / 0.45); }
+  from { box-shadow: 0 0 12px 3px rgba(var(--glow), 0.45), 0 0 30px 7px rgba(var(--glow), 0.22); }
+  to { box-shadow: 0 0 22px 6px rgba(var(--glow), 0.8), 0 0 54px 14px rgba(var(--glow), 0.45); }
 }
 
 @media (prefers-reduced-motion: reduce) {
