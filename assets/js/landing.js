@@ -243,10 +243,10 @@
     const t0 = performance.now();
 
     // One full light -> dark -> light loop. Long plateaus at each end, smooth fades between them.
-    const PERIOD = 24;
+    const PERIOD = 13;
     const autoDark = (sec) => {   // sec is offset so the page opens on a full-length light phase
       const x = 0.5 - 0.5 * Math.cos((2 * Math.PI * sec) / PERIOD);   // 0..1, starts light
-      const k = Math.min(Math.max((x - 0.28) / 0.44, 0), 1);
+      const k = Math.min(Math.max((x - 0.24) / 0.52, 0), 1);
       return k * k * (3 - 2 * k);                                       // smoothstep
     };
 
@@ -255,7 +255,7 @@
       last = now;
       mouse.hover += (mouse.target - mouse.hover) * Math.min(dt * 3, 1);
       const hovering = document.body.classList.contains("is-hover");
-      const darkTarget = !dark.ready ? 0 : hovering ? 1 : autoDark((now - t0) / 1000 + PERIOD * 0.82);
+      const darkTarget = !dark.ready ? 0 : hovering ? 1 : autoDark((now - t0) / 1000 + PERIOD * 0.84);
       dark.value += (darkTarget - dark.value) * Math.min(dt * (hovering ? 4 : 7), 1);
       if (Math.abs(darkTarget - dark.value) < 0.001) dark.value = darkTarget;
       // Share the value with the page so the headline and buttons fade in step with the orb
