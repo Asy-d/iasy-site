@@ -443,7 +443,7 @@ main.split-slider-main {
   background-position: center;
   opacity: 0;
   transform: scale(1.04);
-  transition: opacity 1100ms var(--ease-in-out), transform 1400ms var(--ease-out);
+  transition: opacity 850ms var(--ease-in-out), transform 1100ms var(--ease-out);
 }
 
 .split-slide-image.is-active {

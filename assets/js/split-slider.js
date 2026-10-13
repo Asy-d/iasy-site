@@ -11,7 +11,7 @@ function initSplitSlider() {
 
   let index = 0;
   let autoplayTimer = null;
-  const AUTOPLAY_MS = 6500;
+  const AUTOPLAY_MS = 4200;
 
   totalEl.textContent = String(slides.length).padStart(2, "0");
 
@@ -66,8 +66,12 @@ function initSplitSlider() {
     }
   });
 
-  root.addEventListener("mouseenter", stopAutoplay);
-  root.addEventListener("mouseleave", startAutoplay);
+  // Only pause while the pointer is over the thumbnail rail, so a resting mouse never stops the show
+  const rail = root.querySelector(".split-slider-dots");
+  if (rail) {
+    rail.addEventListener("mouseenter", stopAutoplay);
+    rail.addEventListener("mouseleave", startAutoplay);
+  }
 
   show(0);
   startAutoplay();
