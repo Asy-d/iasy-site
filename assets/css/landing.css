@@ -164,6 +164,34 @@ body.gl-bg { transition: none; }
   box-shadow: 0 0 0 1px rgba(var(--glow), 0.9), 0 0 38px 6px rgba(var(--glow), 0.55), 0 22px 44px -16px rgba(var(--glow), 0.7);
 }
 
+/* Live cycle (WebGL): colours follow --dk (0 = light page, 1 = dark page), updated every frame */
+:root { --dk: 0; }
+@supports (color: color-mix(in srgb, red 50%, blue)) {
+  body.gl-bg .greeting { color: color-mix(in srgb, #c3c6d2 calc(var(--dk) * 100%), #565b73); transition: none; }
+  body.gl-bg h1 { color: color-mix(in srgb, #fff calc(var(--dk) * 100%), #17192b); transition: none; }
+  body.gl-bg .choice {
+    background: color-mix(in srgb, #fff calc(var(--dk) * 100%), #111320);
+    border-color: color-mix(in srgb, #fff calc(var(--dk) * 100%), #111320);
+    color: color-mix(in srgb, #111320 calc(var(--dk) * 100%), #fff);
+    box-shadow: 0 16px 30px -18px color-mix(in srgb, rgba(255, 255, 255, 0.5) calc(var(--dk) * 100%), rgba(17, 19, 32, 0.7));
+    transition: transform 0.35s var(--ease);
+  }
+}
+/* Coloured glow around the hovered button (its own layer, so it fades independently) */
+body.gl-bg .choice { position: relative; }
+body.gl-bg .choice::before {
+  content: "";
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  box-shadow: 0 0 0 1px rgba(var(--glow), 0.9), 0 0 38px 6px rgba(var(--glow), 0.55);
+}
+body.gl-bg.is-hover .choice:hover::before,
+body.gl-bg.is-hover .choice:focus-visible::before { opacity: 1; }
+
 /* Entrance */
 .greeting, h1, .choice {
   opacity: 0;

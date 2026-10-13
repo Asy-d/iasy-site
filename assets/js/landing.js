@@ -4,16 +4,20 @@
   const orb = document.querySelector(".orb");
   if (!orb) return;
 
-  // Hovering or focusing the buttons turns the page dark and the buttons bright.
+  // Hovering or focusing the buttons holds the page dark with bright buttons.
+  // (With the live WebGL cycle running, the colours follow the cycle; without it, we switch the dark class directly.)
   const choices = document.querySelector(".choices");
-  const setDark = (on) => document.body.classList.toggle("is-dark", on);
+  const setHover = (on) => {
+    document.body.classList.toggle("is-hover", on);
+    if (!document.body.classList.contains("gl-bg")) document.body.classList.toggle("is-dark", on);
+  };
   if (choices) {
-    choices.addEventListener("pointerenter", (e) => { if (e.pointerType !== "touch") setDark(true); });
-    choices.addEventListener("pointerleave", () => setDark(false));
-    choices.addEventListener("focusin", (e) => { if (e.target.matches(":focus-visible")) setDark(true); });
-    choices.addEventListener("focusout", () => setDark(false));
+    choices.addEventListener("pointerenter", (e) => { if (e.pointerType !== "touch") setHover(true); });
+    choices.addEventListener("pointerleave", () => setHover(false));
+    choices.addEventListener("focusin", (e) => { if (e.target.matches(":focus-visible")) setHover(true); });
+    choices.addEventListener("focusout", () => setHover(false));
   }
-  window.addEventListener("pageshow", () => setDark(false));
+  window.addEventListener("pageshow", () => setHover(false));
 
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
@@ -235,14 +239,31 @@
     let last = performance.now();
     let first = true;
     let lastShade = -1;
+    let lastDk = -1;
+    const t0 = performance.now();
+
+    // One full light -> dark -> light loop. Long plateaus at each end, smooth fades between them.
+    const PERIOD = 24;
+    const autoDark = (sec) => {   // sec is offset so the page opens on a full-length light phase
+      const x = 0.5 - 0.5 * Math.cos((2 * Math.PI * sec) / PERIOD);   // 0..1, starts light
+      const k = Math.min(Math.max((x - 0.28) / 0.44, 0), 1);
+      return k * k * (3 - 2 * k);                                       // smoothstep
+    };
 
     const frame = (now) => {
       const dt = Math.min((now - last) / 1000, 0.1);
       last = now;
       mouse.hover += (mouse.target - mouse.hover) * Math.min(dt * 3, 1);
-      const darkTarget = dark.ready && document.body.classList.contains("is-dark") ? 1 : 0;
-      dark.value += (darkTarget - dark.value) * Math.min(dt * 5, 1);
-      if (Math.abs(darkTarget - dark.value) < 0.002) dark.value = darkTarget;
+      const hovering = document.body.classList.contains("is-hover");
+      const darkTarget = !dark.ready ? 0 : hovering ? 1 : autoDark((now - t0) / 1000 + PERIOD * 0.82);
+      dark.value += (darkTarget - dark.value) * Math.min(dt * (hovering ? 4 : 7), 1);
+      if (Math.abs(darkTarget - dark.value) < 0.001) dark.value = darkTarget;
+      // Share the value with the page so the headline and buttons fade in step with the orb
+      const dk = Math.round(dark.value * 500) / 500;
+      if (dk !== lastDk) {
+        lastDk = dk;
+        document.documentElement.style.setProperty("--dk", dk);
+      }
       // Keep the page colour in lock-step with the orb so there is never a visible band between them
       const shade = Math.round(255 * (1 - dark.value));
       if (shade !== lastShade) {
